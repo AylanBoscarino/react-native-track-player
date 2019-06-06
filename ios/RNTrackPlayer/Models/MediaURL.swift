@@ -23,15 +23,19 @@ struct MediaURL {
             let encodedURI = uri.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)!
             value = URL(string: encodedURI.replacingOccurrences(of: "file://", with: ""))!
         } else {
+            // ESSE TRECHO FOI COMENTADO PARA FUNCIONAR COM O FIREBASE STORAGE
             let url = object as! String
-            let urlencoded = url.removingPercentEncoding
+            // let urlencoded = url.removingPercentEncoding
             isLocal = url.lowercased().hasPrefix("file://")
-            if let encoded = urlencoded!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlFragmentAllowed
-                .union(.urlHostAllowed)
-                .union(.urlPasswordAllowed)
-                .union(.urlQueryAllowed)
-                .union(.urlUserAllowed)) {
-                value = URL(string: encoded.replacingOccurrences(of: "file://", with: ""))!
+            if true
+            // ESSE TRECHO FOI COMENTADO PARA FUNCIONAR COM O FIREBASE STORAGE
+            // let encoded = urlencoded!.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlFragmentAllowed
+            //     .union(.urlHostAllowed)
+            //     .union(.urlPasswordAllowed)
+            //     .union(.urlQueryAllowed)
+            //     .union(.urlUserAllowed)) 
+            {
+                value = URL(string: url.replacingOccurrences(of: "file://", with: ""))!
             } else {
                 value = URL(string: url.replacingOccurrences(of: "file://", with: ""))!
             }
